@@ -1,0 +1,12 @@
+.movimientos-container { padding: 20px; }
+h1 { color: #006994; margin-bottom: 24px; }
+.formulario { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+.form-grid { display: flex; gap: 10px; flex-wrap: wrap; }
+.form-grid select, .form-grid input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; }
+.form-grid button { background: #006994; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; }
+.historial { background: white; border-radius: 12px; padding: 20px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+th { background: #f5f5f5; }
+.entrada { color: #22c55e; font-weight: bold; }
+.salida { color: #ef4444; font-weight: bold; }

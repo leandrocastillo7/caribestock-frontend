@@ -1,0 +1,39 @@
+<div class="movimientos-container">
+  <h1>Registro de Movimientos</h1>
+  
+  <div class="formulario">
+    <h2>Registrar Movimiento</h2>
+    <div class="form-grid">
+      <select [(ngModel)]="nuevoMovimiento.productoId">
+        <option value="">Seleccionar producto</option>
+        <option *ngFor="let p of productos" [value]="p._id">{{ p.nombre }} (Stock: {{ p.stock }})</option>
+      </select>
+      <select [(ngModel)]="nuevoMovimiento.tipo">
+        <option value="entrada">➕ Entrada</option>
+        <option value="salida">➖ Salida</option>
+      </select>
+      <input type="number" [(ngModel)]="nuevoMovimiento.cantidad" placeholder="Cantidad" min="1">
+      <button (click)="registrarMovimiento()">Registrar</button>
+    </div>
+  </div>
+  
+  <div class="historial">
+    <h2>Historial de Movimientos</h2>
+    <div *ngIf="loading">Cargando...</div>
+    <table *ngIf="!loading">
+      <thead>
+        <tr><th>Producto</th><th>Tipo</th><th>Cantidad</th><th>Fecha</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of movimientos">
+          <td>{{ obtenerNombreProducto(m.productoId) }}</td>
+          <td [class.entrada]="m.tipo === 'entrada'" [class.salida]="m.tipo === 'salida'">
+            {{ m.tipo === 'entrada' ? '➕ Entrada' : '➖ Salida' }}
+          </td>
+          <td>{{ m.cantidad }}</td>
+          <td>{{ m.fecha | date:'dd/MM/yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

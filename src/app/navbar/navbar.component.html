@@ -1,0 +1,11 @@
+<nav class="navbar" *ngIf="auth.isLoggedIn()">
+  <div class="navbar-brand">
+    <span>🏝️ CaribeStock</span>
+  </div>
+  <div class="navbar-menu">
+    <a routerLink="/dashboard" routerLinkActive="active">📊 Dashboard</a>
+    <a routerLink="/productos" routerLinkActive="active">📦 Productos</a>
+    <a routerLink="/movimientos" routerLinkActive="active">🔄 Movimientos</a>
+  </div>
+  <button class="btn-logout" (click)="logout()">🚪 Cerrar Sesión</button>
+</nav>

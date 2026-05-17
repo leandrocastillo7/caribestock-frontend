@@ -1,0 +1,62 @@
+<div class="productos-container">
+  <h1>Gestión de Productos</h1>
+  
+  <!-- Formulario agregar producto -->
+  <div class="formulario">
+    <h2>Agregar Nuevo Producto</h2>
+    <div class="form-grid">
+      <input type="text" [(ngModel)]="nuevoProducto.nombre" placeholder="Nombre" required>
+      <input type="number" [(ngModel)]="nuevoProducto.precio" placeholder="Precio">
+      <input type="number" [(ngModel)]="nuevoProducto.stock" placeholder="Stock">
+      <button class="btn-crear" (click)="crearProducto()">➕ Agregar</button>
+    </div>
+  </div>
+  
+  <!-- Tabla productos -->
+  <div class="tabla-container">
+    <h2>Lista de Productos</h2>
+    <div *ngIf="loading">Cargando...</div>
+    <table *ngIf="!loading">
+      <thead>
+        <tr><th>Nombre</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of productos">
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.precio | currency:'COP':'$':'1.0-0' }}</td>
+          <td [class.stock-bajo]="p.stock < 5">{{ p.stock }}</td>
+          <td class="acciones">
+            <button class="btn-editar" (click)="abrirModal(p)">✏️ Editar</button>
+            <button class="btn-eliminar" (click)="eliminarProducto(p._id)">🗑️ Eliminar</button>
+          </td>
+        </tr>
+        <tr *ngIf="productos.length === 0">
+          <td colspan="4">No hay productos registrados</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal Edición -->
+<div class="modal" *ngIf="mostrarModal">
+  <div class="modal-contenido">
+    <h2>Editar Producto</h2>
+    <div class="campo-modal">
+      <label>Nombre:</label>
+      <input type="text" [(ngModel)]="editando.nombre">
+    </div>
+    <div class="campo-modal">
+      <label>Precio:</label>
+      <input type="number" [(ngModel)]="editando.precio">
+    </div>
+    <div class="campo-modal">
+      <label>Stock:</label>
+      <input type="number" [(ngModel)]="editando.stock">
+    </div>
+    <div class="modal-footer">
+      <button class="btn-guardar" (click)="guardarEdicion()">Guardar</button>
+      <button class="btn-cancelar" (click)="cerrarModal()">Cancelar</button>
+    </div>
+  </div>
+</div>

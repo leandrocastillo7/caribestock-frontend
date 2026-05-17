@@ -1,0 +1,53 @@
+<div class="dashboard">
+  <h1>Dashboard</h1>
+  
+  <div *ngIf="loading" class="loading">Cargando datos...</div>
+  
+  <div *ngIf="!loading" class="cards">
+    <div class="card">
+      <div class="card-icon">📦</div>
+      <div class="card-info">
+        <h3>Total Productos</h3>
+        <p class="card-value">{{ totalProductos }}</p>
+      </div>
+    </div>
+    
+    <div class="card warning">
+      <div class="card-icon">⚠️</div>
+      <div class="card-info">
+        <h3>Stock Bajo</h3>
+        <p class="card-value">{{ stockBajo }}</p>
+        <p class="card-sub">Productos con menos de 5 unidades</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="movimientos">
+    <h2>Últimos Movimientos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Tipo</th>
+          <th>Cantidad</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of ultimosMovimientos">
+          <td>{{ m.productoId?.nombre || m.productoId }}</td>
+          <td>
+            <span [class]="m.tipo === 'entrada' ? 'entrada' : 'salida'">
+              {{ m.tipo === 'entrada' ? '➕ Entrada' : '➖ Salida' }}
+            </span>
+          </td>
+          <td>{{ m.cantidad }}</td>
+          <td>{{ m.fecha | date:'dd/MM/yyyy' }}</td>
+        </tr>
+        <tr *ngIf="ultimosMovimientos.length === 0">
+          <td colspan="4" class="text-center">No hay movimientos registrados</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
