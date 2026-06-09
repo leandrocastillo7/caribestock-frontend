@@ -26,7 +26,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let m of movimientos">
-          <td>{{ obtenerNombreProducto(m.productoId) }}</td>
+          <td>{{ m.productoId?.nombre || 'Producto eliminado' }}</td>
           <td [class.entrada]="m.tipo === 'entrada'" [class.salida]="m.tipo === 'salida'">
             {{ m.tipo === 'entrada' ? '➕ Entrada' : '➖ Salida' }}
           </td>

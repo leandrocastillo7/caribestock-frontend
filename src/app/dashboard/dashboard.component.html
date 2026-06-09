@@ -1,53 +1,46 @@
 <div class="dashboard">
-  <h1>Dashboard</h1>
-  
-  <div *ngIf="loading" class="loading">Cargando datos...</div>
-  
-  <div *ngIf="!loading" class="cards">
-    <div class="card">
-      <div class="card-icon">📦</div>
-      <div class="card-info">
-        <h3>Total Productos</h3>
-        <p class="card-value">{{ totalProductos }}</p>
-      </div>
-    </div>
+
+  <div class="watermark">
+    IDEAS LAB
+  </div>
+
+  <h1>📊 Panel Principal</h1>
+
+  <div *ngIf="loading" style="text-align: center;">Cargando...</div>
+
+  <div *ngIf="!loading">
     
-    <div class="card warning">
-      <div class="card-icon">⚠️</div>
-      <div class="card-info">
+    <div style="display: flex; gap: 20px; margin-bottom: 30px;">
+      <div style="background: white; padding: 20px; border-radius: 12px; flex: 1;">
+        <h3>Total Productos</h3>
+        <p style="font-size: 32px; font-weight: bold;">{{ totalProductos }}</p>
+      </div>
+
+      <div style="background: white; padding: 20px; border-radius: 12px; flex: 1;">
         <h3>Stock Bajo</h3>
-        <p class="card-value">{{ stockBajo }}</p>
-        <p class="card-sub">Productos con menos de 5 unidades</p>
+        <p style="font-size: 32px; font-weight: bold; color: #f59e0b;">
+          {{ stockBajo }}
+        </p>
       </div>
     </div>
+
+    <div style="background: white; border-radius: 12px; padding: 20px;">
+      <h2>Últimos Movimientos</h2>
+
+      <div *ngFor="let m of ultimosMovimientos"
+           style="border-bottom: 1px solid #eee; padding: 10px;">
+        <strong>Producto:</strong> {{ m.nombreProducto }} |
+        <strong>Tipo:</strong>
+        {{ m.tipo === 'entrada' ? '➕ Entrada' : '➖ Salida' }} |
+        <strong>Cantidad:</strong> {{ m.cantidad }}
+      </div>
+
+      <div *ngIf="ultimosMovimientos.length === 0"
+           style="text-align: center;">
+        No hay movimientos
+      </div>
+    </div>
+
   </div>
-  
-  <div class="movimientos">
-    <h2>Últimos Movimientos</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Tipo</th>
-          <th>Cantidad</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let m of ultimosMovimientos">
-          <td>{{ m.productoId?.nombre || m.productoId }}</td>
-          <td>
-            <span [class]="m.tipo === 'entrada' ? 'entrada' : 'salida'">
-              {{ m.tipo === 'entrada' ? '➕ Entrada' : '➖ Salida' }}
-            </span>
-          </td>
-          <td>{{ m.cantidad }}</td>
-          <td>{{ m.fecha | date:'dd/MM/yyyy' }}</td>
-        </tr>
-        <tr *ngIf="ultimosMovimientos.length === 0">
-          <td colspan="4" class="text-center">No hay movimientos registrados</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+
 </div>

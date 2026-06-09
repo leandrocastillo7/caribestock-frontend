@@ -4,39 +4,126 @@
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(135deg, #006994, #004d66);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Frase principal */
+.login-container::before {
+  content: "LAS METAS LAS PONES TÚ <>";
+
+  position: absolute;
+  top: 35px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 58px;
+  font-weight: 900;
+
+  color: rgba(255,255,255,0.35);
+
+  letter-spacing: 5px;
+  white-space: nowrap;
+
+  z-index: 1;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Subtítulo tecnológico */
+.login-container::after {
+  content: "Innovación • Tecnología • Desarrollo";
+
+  position: absolute;
+  top: 105px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 18px;
+  font-weight: 500;
+
+  color: rgba(255,255,255,0.55);
+
+  letter-spacing: 3px;
+
+  z-index: 1;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Tarjeta Login */
 .login-card {
   background: white;
   padding: 40px;
   border-radius: 16px;
   text-align: center;
   width: 100%;
-  max-width: 350px;
+  max-width: 420px;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+
+  z-index: 2;
 }
 
-.login-card h1 { color: #006994; margin-bottom: 8px; }
-.login-card p { color: #666; margin-bottom: 30px; }
+.login-card h1 {
+  color: #006994;
+  margin-bottom: 8px;
+  font-size: 42px;
+}
+
+.login-card p {
+  color: #666;
+  margin-bottom: 30px;
+}
 
 input {
   width: 100%;
   padding: 12px;
   margin-bottom: 16px;
+
   border: 1px solid #ddd;
   border-radius: 8px;
+
   box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: #006994;
+  box-shadow: 0 0 10px rgba(0,105,148,0.35);
 }
 
 button {
   width: 100%;
   padding: 12px;
+
   background: #006994;
   color: white;
+
   border: none;
   border-radius: 8px;
+
   cursor: pointer;
+
   font-size: 16px;
+
+  transition: all .3s ease;
 }
 
-button:disabled { opacity: 0.6; }
-.error { color: #c00; margin-bottom: 16px; }
+button:hover {
+  background: #00557a;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  opacity: 0.6;
+}
+
+.error {
+  color: #c00;
+  margin-bottom: 16px;
+}

@@ -50,18 +50,25 @@ export class MovimientosComponent implements OnInit {
     }
 
     this.api.createMovimiento(this.nuevoMovimiento).subscribe({
-      next: (res: any) => {
-        alert(`Movimiento registrado. Stock actual: ${res.stockActual}`);
-        this.cargarMovimientos();
-        this.cargarProductos();
-        this.nuevoMovimiento = { productoId: '', tipo: 'entrada', cantidad: 1 };
-      },
+next: (res: any) => {
+
+
+  alert(`Movimiento registrado. Stock actual: ${res.stockActual}`);
+
+  this.cargarMovimientos();
+  this.cargarProductos();
+
+  this.nuevoMovimiento = {
+    productoId: '',
+    tipo: 'entrada',
+    cantidad: 1
+  };
+},
       error: (err) => alert('Error: ' + err.error?.error)
     });
   }
 
-  obtenerNombreProducto(id: string): string {
-    const producto = this.productos.find(p => p._id === id);
-    return producto ? producto.nombre : 'Producto eliminado';
-  }
+ obtenerNombreProducto(producto: any): string {
+  return producto?.nombre || 'Producto eliminado';
+}
 }

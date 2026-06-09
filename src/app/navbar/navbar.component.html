@@ -1,10 +1,10 @@
 <nav class="navbar" *ngIf="auth.isLoggedIn()">
   <div class="navbar-brand">
-    <span>🏝️ CaribeStock</span>
+    <span>💡 IDEAS LAB | Inventory System</span>
   </div>
   <div class="navbar-menu">
-    <a routerLink="/dashboard" routerLinkActive="active">📊 Dashboard</a>
-    <a routerLink="/productos" routerLinkActive="active">📦 Productos</a>
+    <a routerLink="/dashboard" routerLinkActive="active">📊 Panel Principal</a>
+    <a routerLink="/productos" routerLinkActive="active">📦 Inventario</a>
     <a routerLink="/movimientos" routerLinkActive="active">🔄 Movimientos</a>
   </div>
   <button class="btn-logout" (click)="logout()">🚪 Cerrar Sesión</button>
